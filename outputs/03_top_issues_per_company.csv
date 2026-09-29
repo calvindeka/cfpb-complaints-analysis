@@ -1,0 +1,16 @@
+company,rnk,issue,n
+"BANK OF AMERICA, NATIONAL ASSOCIATION",1,Managing an account,6821
+"BANK OF AMERICA, NATIONAL ASSOCIATION",2,Problem with a purchase shown on your statement,2658
+"BANK OF AMERICA, NATIONAL ASSOCIATION",3,Closing an account,1596
+CAPITAL ONE FINANCIAL CORPORATION,1,Managing an account,7626
+CAPITAL ONE FINANCIAL CORPORATION,2,Problem with a purchase shown on your statement,3546
+CAPITAL ONE FINANCIAL CORPORATION,3,Getting a credit card,2828
+"CITIBANK, N.A.",1,Problem with a purchase shown on your statement,5192
+"CITIBANK, N.A.",2,Managing an account,3705
+"CITIBANK, N.A.",3,"Other features, terms, or problems",1905
+JPMORGAN CHASE & CO.,1,Managing an account,8849
+JPMORGAN CHASE & CO.,2,Problem with a purchase shown on your statement,3568
+JPMORGAN CHASE & CO.,3,Closing an account,2797
+WELLS FARGO & COMPANY,1,Managing an account,8414
+WELLS FARGO & COMPANY,2,Problem with a lender or other company charging your account,2306
+WELLS FARGO & COMPANY,3,Problem with a purchase shown on your statement,1694

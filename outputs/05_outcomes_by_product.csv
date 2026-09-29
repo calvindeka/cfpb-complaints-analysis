@@ -1,0 +1,15 @@
+product,company_response,n,pct_of_product
+Checking or savings account,Closed with explanation,112242,81.9
+Checking or savings account,Closed with monetary relief,16835,12.3
+Checking or savings account,Closed with non-monetary relief,7836,5.7
+Checking or savings account,Untimely response,102,0.1
+Checking or savings account,In progress,1,0.0
+Credit card,Closed with explanation,106337,64.1
+Credit card,Closed with non-monetary relief,38086,22.9
+Credit card,Closed with monetary relief,21452,12.9
+Credit card,Untimely response,91,0.1
+Credit card,In progress,1,0.0
+Mortgage,Closed with explanation,43772,94.9
+Mortgage,Closed with non-monetary relief,1267,2.7
+Mortgage,Closed with monetary relief,885,1.9
+Mortgage,Untimely response,212,0.5

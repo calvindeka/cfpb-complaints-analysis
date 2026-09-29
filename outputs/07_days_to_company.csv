@@ -1,0 +1,4 @@
+product,complaints,avg_days,max_days,sent_before_received
+Checking or savings account,137016,0.99,269.0,0
+Credit card,165967,1.18,446.0,0
+Mortgage,46136,2.39,324.0,0
