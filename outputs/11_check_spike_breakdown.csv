@@ -1,0 +1,22 @@
+dim,value,jan_2025,avg_month_2024,x_typical
+channel,Web,7565,257.9,29.3
+issue,Problem caused by your funds being low,6970,74.7,93.3
+issue,Managing an account,276,94.8,2.9
+product,Checking or savings account,7411,229.4,32.3
+product,Credit card,204,76.0,2.7
+state,GA,1086,39.7,27.4
+state,TX,1070,36.2,29.6
+state,FL,855,35.2,24.3
+state,VA,550,21.1,26.1
+state,NC,507,16.4,30.9
+state,SC,500,9.4,53.1
+state,MD,352,19.7,17.9
+state,CA,351,27.7,12.7
+state,IL,249,10.8,23.2
+state,AL,235,5.8,40.9
+state,MI,216,6.4,33.7
+state,TN,208,5.7,36.7
+state,LA,162,6.7,24.3
+state,MS,125,3.5,35.7
+state,NY,102,7.0,14.6
+state,MO,100,3.2,31.6

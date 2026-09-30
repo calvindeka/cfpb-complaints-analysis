@@ -3,3 +3,5 @@ data/*.db
 .venv/
 __pycache__/
 .DS_Store
+data/model_data.csv
+Rplots.pdf

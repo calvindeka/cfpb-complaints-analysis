@@ -15,7 +15,9 @@ def run_queries():
     OUT.mkdir(exist_ok=True)
     results = {}
     with sqlite3.connect(DB) as conn:
-        for f in sorted(Path("sql").glob("0[1-9]_*.sql")):
+        for f in sorted(Path("sql").glob("[0-9][0-9]_*.sql")):
+            if f.name.startswith(("00", "14")):
+                continue  # 00 = schema, 14 = modeling table (exported for R, not an analysis result)
             df = pd.read_sql_query(f.read_text(), conn)
             df.to_csv(OUT / f"{f.stem}.csv", index=False)
             results[f.stem] = df
@@ -38,6 +40,13 @@ def charts(r):
     ax.set(title="How complaints ended, by product (% of product)", xlabel="%", ylabel="")
     plt.tight_layout(); plt.savefig(OUT / "outcomes_by_product.png", dpi=130); plt.close()
 
+    d = r["10_check_spike_daily"]
+    d = d[(d["day"] >= "2024-12-15") & (d["day"] <= "2025-02-15")].set_index("day")
+    ax = d[["navy_federal", "capital_one", "all_others"]].plot.area(figsize=(11, 4), linewidth=0)
+    ax.set(title="Daily complaints, Dec 15 2024 - Feb 15 2025: the spike is a multi-day surge", xlabel="", ylabel="Complaints")
+    ax.set_xticks(range(0, len(d), 7)); ax.set_xticklabels(d.index[::7], rotation=45, ha="right")
+    plt.tight_layout(); plt.savefig(OUT / "spike_daily.png", dpi=130); plt.close()
+
     m = r["06_month_over_month"]
     ax = m.plot.bar(x="month", y="complaints", legend=False, figsize=(10, 4))
     ax.set(title="Total complaints per month (note Jan 2025 spike)", xlabel="", ylabel="Complaints")
@@ -47,4 +56,4 @@ def charts(r):
 if __name__ == "__main__":
     res = run_queries()
     charts(res)
-    print("wrote", len(res), "result files and 4 charts to outputs/")
+    print("wrote", len(res), "result files and 5 charts to outputs/")
