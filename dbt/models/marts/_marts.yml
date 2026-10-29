@@ -1,0 +1,44 @@
+version: 2
+
+models:
+  - name: dim_companies
+    description: One row per company with lifetime complaint volume and a size band.
+    columns:
+      - name: company
+        data_tests: [unique, not_null]
+
+  - name: fct_complaints
+    description: One row per complaint; the grain of the semantic model.
+    columns:
+      - name: complaint_id
+        data_tests: [unique, not_null]
+      - name: company
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('dim_companies')
+                field: company
+      - name: is_monetary_relief
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [0, 1]
+
+  - name: mart_monthly_product
+    description: Monthly complaints per product with month-over-month change.
+  - name: mart_company_outcomes
+    description: Relief and timeliness rates for companies with 100+ complaints.
+    columns:
+      - name: company
+        data_tests: [unique, not_null]
+  - name: mart_issue_outcomes
+    description: Monetary relief rate by product and issue (issues with 200+ complaints).
+  - name: mart_daily_volume
+    description: Daily complaints, Dec 2024 - Feb 2025, for the January 2025 surge.
+  - name: metricflow_time_spine
+    description: Daily date spine for the semantic layer.
+    time_spine:
+      standard_granularity_column: date_day
+    columns:
+      - name: date_day
+        granularity: day

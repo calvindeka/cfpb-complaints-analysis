@@ -102,6 +102,27 @@ Logistic regression confusion matrix (predicted rows, actual columns): 10,287 tr
 
 **What this cannot say.** These are associations in one year of complaints, not causes: for example, fee and purchase disputes may end in refunds simply because a refund is the natural remedy, not because of anything about the consumer. Issue categories are entangled with sub-product, which is why some intervals are wide. Odds ratios are not probabilities.
 
+## dbt layer and Tableau extracts
+
+`dbt/` rebuilds the analysis as a tested, documented data pipeline, the way a data team would maintain it. dbt runs on **DuckDB** (in-process, no server), which attaches the same SQLite database, so the numbers match the SQL queries above.
+
+```
+raw.complaints (SQLite, 349,119 rows)
+  └─ stg_complaints          view: typed dates, days_to_company, relief / timely / credit-bureau flags
+       ├─ dim_companies      1,631 companies with volume and a size band
+       └─ fct_complaints     one row per complaint (the semantic model's grain)
+            ├─ mart_monthly_product    monthly volume per product, month-over-month change (LAG)
+            ├─ mart_company_outcomes   relief and timely rates, companies with 100+ complaints (152)
+            ├─ mart_issue_outcomes     monetary relief rate by product and issue (26 issues with 200+ complaints)
+            └─ mart_daily_volume       daily volume Dec 2024 - Feb 2025, Navy Federal and Capital One split out
+```
+
+**Tests (17, all passing):** unique and not-null keys, accepted values for product, channel and the relief flag, a relationship test from the fact table to `dim_companies`, and four custom checks: the fact table has exactly as many rows as the source, monthly totals add back up to every complaint, no complaint was forwarded before it was received, and every rate is between 0 and 100.
+
+**Semantic model** (`dbt/models/marts/_semantic.yml`): defines measures (complaints, monetary relief, final outcomes, timely responses) and ratio metrics (`monetary_relief_rate`, `timely_response_rate`) once, so every report computes them the same way. Validated with MetricFlow; querying relief rate by product returns 12.9% for credit cards, 12.3% for checking/savings and 1.9% for mortgages, matching Q5.
+
+**Tableau:** `src/export_tableau.py` writes the four marts to `tableau/*.csv` for Tableau Public. `tableau/README.md` describes the dashboard.
+
 ## Limitations
 
 - **Not a random sample.** These are only consumers who chose to complain. Findings describe complaints, not customer experience in general.
@@ -131,3 +152,12 @@ sqlite3 data/complaints.db < sql/01_volume_by_product_month.sql   # or run any q
 ```
 
 The R step needs R (built with 4.6.1) and the packages `readr`, `dplyr`, `ggplot2`, `rpart`; see `outputs/r_session_info.txt`.
+
+dbt layer (separate environment; dbt does not support Python 3.14 yet):
+
+```bash
+uv venv .venv-dbt --python 3.12 && uv pip install --python .venv-dbt/bin/python -r requirements-dbt.txt
+cd dbt && ../.venv-dbt/bin/dbt build --profiles-dir .   # 8 models, 17 tests
+../.venv-dbt/bin/mf query --metrics monetary_relief_rate --group-by complaint__product   # semantic layer
+cd .. && .venv-dbt/bin/python -m src.export_tableau     # writes tableau/*.csv
+```

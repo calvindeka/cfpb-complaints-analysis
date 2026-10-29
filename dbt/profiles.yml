@@ -1,0 +1,14 @@
+# DuckDB runs in-process (no server). It attaches the SQLite database that
+# src/load.py builds, so dbt reads the same 349,119 rows as the SQL queries.
+cfpb:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: ../data/cfpb.duckdb
+      threads: 4
+      attach:
+        - path: ../data/complaints.db
+          type: sqlite
+          alias: raw
+          read_only: true

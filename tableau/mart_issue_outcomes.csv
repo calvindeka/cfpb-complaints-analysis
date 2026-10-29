@@ -1,0 +1,27 @@
+product,issue,complaints,final_outcomes,monetary_relief_pct
+Checking or savings account,Closing an account,17644,17631,11.81
+Checking or savings account,Incorrect information on your report,371,371,2.96
+Checking or savings account,Managing an account,75156,75109,12.44
+Checking or savings account,Opening an account,11783,11773,8.26
+Checking or savings account,Problem caused by your funds being low,15469,15455,12.02
+Checking or savings account,Problem with a company's investigation into an existing problem,285,285,8.07
+Checking or savings account,Problem with a lender or other company charging your account,16016,15999,15.84
+Credit card,"Advertising and marketing, including promotional offers",5871,5869,14.86
+Credit card,Closing your account,10497,10491,8.18
+Credit card,Credit monitoring or identity theft protection services,366,365,4.11
+Credit card,Fees or interest,14179,14172,33.22
+Credit card,Getting a credit card,20488,20472,1.65
+Credit card,Improper use of your report,1563,1560,0.45
+Credit card,Incorrect information on your report,26996,26988,0.63
+Credit card,"Other features, terms, or problems",15185,15176,14.51
+Credit card,Problem when making payments,8743,8730,19.58
+Credit card,Problem with a company's investigation into an existing problem,20037,20035,0.71
+Credit card,Problem with a purchase shown on your statement,34405,34385,29.22
+Credit card,Struggling to pay your bill,2065,2063,5.43
+Credit card,Trouble using your card,5335,5332,4.91
+Mortgage,Applying for a mortgage or refinancing an existing mortgage,4751,4692,3.26
+Mortgage,Closing on a mortgage,3478,3427,3.56
+Mortgage,Incorrect information on your report,1316,1313,0.99
+Mortgage,Problem with a company's investigation into an existing problem,745,745,1.21
+Mortgage,Struggling to pay mortgage,11122,11095,0.45
+Mortgage,Trouble during payment process,24424,24353,2.2

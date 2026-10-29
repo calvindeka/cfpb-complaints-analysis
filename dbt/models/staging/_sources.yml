@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: raw
+    description: SQLite database built by src/load.py from the CFPB public API download.
+    schema: main
+    database: raw
+    tables:
+      - name: complaints
+        description: One row per CFPB complaint (mortgage, credit card, checking/savings; 2024-2025).

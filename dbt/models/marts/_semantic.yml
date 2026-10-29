@@ -1,0 +1,78 @@
+# Semantic model: defines the business measures once, so every dashboard
+# computes "relief rate" the same way instead of each one re-deriving it.
+semantic_models:
+  - name: complaints
+    description: CFPB complaints at one row per complaint.
+    model: ref('fct_complaints')
+    defaults:
+      agg_time_dimension: date_received
+    entities:
+      - name: complaint
+        type: primary
+        expr: complaint_id
+    dimensions:
+      - name: date_received
+        type: time
+        type_params:
+          time_granularity: day
+      - name: product
+        type: categorical
+      - name: issue
+        type: categorical
+      - name: company
+        type: categorical
+      - name: company_size_band
+        type: categorical
+      - name: state
+        type: categorical
+      - name: submitted_via
+        type: categorical
+    measures:
+      - name: complaint_count
+        agg: count
+        expr: complaint_id
+      - name: monetary_relief_count
+        agg: sum
+        expr: is_monetary_relief
+      - name: final_outcome_count
+        agg: sum
+        expr: has_final_outcome
+      - name: timely_count
+        agg: sum
+        expr: is_timely
+
+metrics:
+  # Simple metrics wrap one measure; ratio metrics divide two simple metrics.
+  - name: complaints
+    label: Complaints
+    type: simple
+    type_params:
+      measure: complaint_count
+  - name: monetary_relief_complaints
+    label: Complaints closed with monetary relief
+    type: simple
+    type_params:
+      measure: monetary_relief_count
+  - name: final_outcome_complaints
+    label: Complaints with a final outcome
+    type: simple
+    type_params:
+      measure: final_outcome_count
+  - name: timely_complaints
+    label: Complaints answered on time
+    type: simple
+    type_params:
+      measure: timely_count
+  - name: monetary_relief_rate
+    label: Monetary relief rate
+    description: Share of complaints with a final outcome that closed with monetary relief.
+    type: ratio
+    type_params:
+      numerator: monetary_relief_complaints
+      denominator: final_outcome_complaints
+  - name: timely_response_rate
+    label: Timely response rate
+    type: ratio
+    type_params:
+      numerator: timely_complaints
+      denominator: complaints

@@ -5,3 +5,11 @@ __pycache__/
 .DS_Store
 data/model_data.csv
 Rplots.pdf
+
+# dbt layer
+.venv-dbt/
+data/*.duckdb
+data/*.duckdb.wal
+dbt/target/
+dbt/logs/
+dbt/.user.yml
