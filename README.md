@@ -1,6 +1,8 @@
 # CFPB Bank Complaints Analysis
 
-SQL + Python analysis of public consumer complaints about **mortgages, credit cards, and checking/savings accounts** filed with the Consumer Financial Protection Bureau (CFPB) in 2024–2025.
+SQL, Python, dbt and R analysis of public consumer complaints about **mortgages, credit cards, and checking/savings accounts** filed with the Consumer Financial Protection Bureau (CFPB) in 2024–2025.
+
+**At a glance:** 349,119 complaints loaded with a tested Python pipeline · 13 SQL queries plus 5 checks that verify the January 2025 spike · a [dbt layer](#dbt-layer-and-tableau-extracts) on DuckDB with 17 data tests and a semantic model · a logistic regression in R (ROC AUC 0.75 on held-out 2025 data) · a **[Tableau Public dashboard](https://public.tableau.com/app/profile/calvin.deka/viz/CFPBBankComplaints2024-2025/CFPBBankComplaints2024-2025volumetheJanuary2025surgeandmonetaryrelief)**.
 
 **Questions:** How do complaint volumes move over time? Which companies and issues dominate? How often do companies respond on time, and how do complaints end?
 
