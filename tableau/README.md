@@ -9,4 +9,6 @@ The CSVs here are the dbt marts, exported by `src/export_tableau.py`. Each one i
 | `mart_issue_outcomes.csv` | 26 | Bar chart: monetary relief rate by issue, colored by product |
 | `mart_company_outcomes.csv` | 152 | Scatter: complaints (log scale) vs monetary relief rate per company, colored by size band |
 
-Published dashboard: _link added after publishing_
+**Published dashboard:** [CFPB Bank Complaints 2024-2025 on Tableau Public](https://public.tableau.com/app/profile/calvin.deka/viz/CFPBBankComplaints2024-2025/CFPBBankComplaints2024-2025volumetheJanuary2025surgeandmonetaryrelief)
+
+It has three views: monthly complaints (the January 2025 spike), monetary relief rate by product and issue, and daily complaints for Dec 2024 - Feb 2025 split into Navy Federal, Capital One and all other companies. The company-outcomes mart is exported but not yet charted.

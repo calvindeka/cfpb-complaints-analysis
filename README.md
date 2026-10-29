@@ -121,7 +121,7 @@ raw.complaints (SQLite, 349,119 rows)
 
 **Semantic model** (`dbt/models/marts/_semantic.yml`): defines measures (complaints, monetary relief, final outcomes, timely responses) and ratio metrics (`monetary_relief_rate`, `timely_response_rate`) once, so every report computes them the same way. Validated with MetricFlow; querying relief rate by product returns 12.9% for credit cards, 12.3% for checking/savings and 1.9% for mortgages, matching Q5.
 
-**Tableau:** `src/export_tableau.py` writes the four marts to `tableau/*.csv` for Tableau Public. `tableau/README.md` describes the dashboard.
+**Tableau:** `src/export_tableau.py` writes the four marts to `tableau/*.csv`, which feed a [published Tableau Public dashboard](https://public.tableau.com/app/profile/calvin.deka/viz/CFPBBankComplaints2024-2025/CFPBBankComplaints2024-2025volumetheJanuary2025surgeandmonetaryrelief) (monthly volume, relief rate by issue, and the January 2025 surge by company). `tableau/README.md` describes it.
 
 ## Limitations
 
